@@ -1,0 +1,33 @@
+﻿detailed_location,sample,CPE,ddPCR,sgRNA_copies_uL_RNA,Cq
+nasal-placode, P45 nas. placode ,yes,162918.48,2815778.34,21.43
+sinus-turbinate, P45 sinus turbinate ,yes,51393.34,1264954.15,22.69
+L-inferior-lobe, P45 L inf. lobe ,yes,6799.58,150147.41,26.06
+proximal-trachea, P45 pro. trachea ,yes,4918.07,37860.93,28.24
+rib, P45 bone rib ,no,2520.86,2918.54,32.28
+L-bronchus, P45 L bronchus ,yes,2274.81,47537.85,27.88
+R-middle-lobe, P45 R mid. lobe ,NA,1897.79,24385,28.93
+R-bronchus, P45 R Bronchus ,NA,1673.74,8965.51,30.51
+L-eye-optic-nerve, P45 L eye optic nerve ,no,1191,16590.76,29.54
+distal-trachea, P45 dist. trachea ,NA,911.6927,12293.56,30.01
+pericardium, P45 pericardium ,no,734.7516,852.6,34.23
+R-eye-choroid-sclera, P45 r eye choroid sclera ,NA,718.076,0,
+R-superior-lobe, P45 R sup. lobe ,NA,585.8094,2031.09,32.85
+stomach, P45 stomach ,no,561.8675,1684.51,33.15
+R-eye-optic-nerve, P45 R eye optic nerve ,no,351.6557,2053.41,32.84
+thoracic-LN, P45 thoracic LN ,no,299.0196,1064.09,33.88
+appendix, P45 appendix ,yes,272.296,998.25,33.98
+L-superior-lobe, P45 L sup. Lobe ,NA,255.0594,997.12,33.98
+R-inferior-lobe, P45 R inf. lobe ,NA,228.4575,9226.86,30.46
+L-kidney, P45  L kidney ,no,191.0243,1092.32,33.83
+R-eye-cornea, P45 R eye cornea ,no,148.9849,3528.98,31.98
+jejunum, P45 jejunum ,NA,134.9752,119.81,37.32
+dura-matter, P45 dura mater ,NA,97.0555,55.3,38.55
+basilar-artery, P45 basilar artery ,NA,90.757,71.77,38.13
+cervical-spinal-cord, P45 cervical spinal cord ,NA,89.4389,50.44,38.69
+R-eye-retina, p45 R eye retina ,NA,87.7872,0,
+tongue, P45 tongue ,yes,82.5323,1168.11,33.73
+parotid-salivary-gland, P45 parotid sal. gland ,no,69.4527,620.68,34.73
+thoracic-aorta, P45 thoracic aorta ,NA,64.988,61.4,38.38
+spleen, P45 spleen ,NA,27.4967,0,
+R-kidney, P45 R kidney ,NA,26.9364,312.97,35.81
+L-ventricle, P45 L ventricle ,NA,24.2224,0,
