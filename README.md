@@ -21,8 +21,9 @@
 
 **Important links**:     
 [Manuscript](website)       
-[BioProject: # ](link)      
-[GenBank: #](link)      
+[BioProject: #PRJNA1208042](link)      
+[GenBank: #PQ851646-PQ851671](link)   
+[GenBank (plaque picks): ](link)    
 [Zenodo DOI: 10.5281/zenodo.14790789](https://doi.org/10.5281/zenodo.14790788)    
 
 ---
