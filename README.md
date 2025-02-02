@@ -23,7 +23,7 @@
 [Manuscript](website)       
 [BioProject: # ](link)      
 [GenBank: #](link)      
-[Zenodo](https://doi.org/10.5281/zenodo.14790788)    
+[Zenodo DOI: 10.5281/zenodo.14790789](https://doi.org/10.5281/zenodo.14790788)    
 
 ---
 
