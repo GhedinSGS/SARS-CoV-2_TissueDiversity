@@ -1,0 +1,56 @@
+#MD SIMULATION AFTER RUN ANALYSIS
+#!/bin/bash
+
+#SBATCH --job-name=Q493K
+#SBATCH --partition=multinode
+#SBATCH --constraint=x2695
+#SBATCH --ntasks=128
+#SBATCH --ntasks-per-core=1
+#SBATCH --time=24:00:00
+
+#Load the GROMACS module
+module load python/3.8
+module load gromacs/2023.2
+
+#Set working directory
+WORKING_DIR=/data/SGSlab/boatengra/Spike/Monomer/Apo_Q493K
+cd $WORKING_DIR
+
+#Generate index files
+echo $'1|13\nq\n' | gmx_mpi make_ndx -f em.gro -o index1.ndx
+
+#Removing perodic boundary and center protein
+echo 0 0 | gmx_mpi trjconv -s md.tpr -f md.xtc -b 0 -e 80000 -o md_nojump.xtc -pbc nojump -center
+echo 4 4 0 | gmx_mpi trjconv -s md.tpr -f md_nojump.xtc -b 0 -e 80000 -o md_nojump_fit.xtc -center -fit rot+trans
+
+#Global basic analysis
+echo 4 4 | gmx_mpi rms -s md.tpr -f md_nojump_fit.xtc -o ../Analysis_A/RMSD/Q493K_rmsd.xvg -tu ns
+echo 3 | gmx_mpi rmsf -s md.tpr -f md_nojump_fit.xtc -o ../Analysis_A/RMSF/Q493K_rmsf.xvg -oq Q493K_rmsf.pdb -res 
+echo 1 | gmx_mpi gyrate -s md.tpr -f md_nojump_fit.xtc -o ../Analysis_A/RG/Q493K_gyrate.xvg
+#####################################################################################################################################################################################
+
+
+#VMD ANALYSIS
+echo 1 1 | gmx_mpi trjconv -s md.tpr -f md_nojump_fit.xtc -o ../Analysis_A/VMD/Q493K.xtc -center
+echo 1 | gmx_mpi trjconv -s md.tpr -f md_nojump_fit.xtc -o ../Analysis_A/VMD/Q493K.pdb -dump 20000 -pbc mol  
+
+#MMPBSA TRAJECTORY ANALYSIS
+echo 1 1 | gmx trjconv -s md.tpr -f md_nojump_fit.xtc -o ../Analysis_A/MMPBSA/Q493K_frames.xtc -dt 20000 -pbc mol -center -ur compact
+echo 1 | gmx trjconv -s md.tpr -f md_nojump_fit.xtc -o ../Analysis_A/MMPBSA/Q493K_frames.pdb -dt 20000 -pbc mol -center -ur compact
+
+#LOCAL ANALYSIS
+#INDEX FILE FOR REGIONS OF SARS-COV-2 SPIKE
+echo $'4 & chain D & r14-685\nq\n' | gmx make_ndx -f Apo_Q493K.pdb -o S1.ndx
+echo $'4 & chain D & r686-1147\nq\n' | gmx make_ndx -f Apo_Q493K.pdb -o S2.ndx
+echo $'4 & chain D & r14-305\nq\n' | gmx make_ndx -f Apo_Q493K.pdb -o NTD.ndx
+echo $'4 & chain D & r319-541\nq\n' | gmx make_ndx -f Apo_Q493K.pdb -o RBD.ndx
+echo $'4 & chain C & r20-616\nq\n' | gmx make_ndx -f Apo_Q493K.pdb -o ACES.ndx
+
+
+#RMSD GENERATION
+echo 10 10 | gmx rms -n S1.ndx -s md.tpr -f md_nojump_fit.xtc -o ../Analysis_A/RMSD/Q493K_S1_rmsd.xvg -tu ns
+echo 10 10 | gmx rms -n S2.ndx -s md.tpr -f md_nojump_fit.xtc -o ../Analysis_A/RMSD/Q493K_S2_rmsd.xvg -tu ns
+echo 10 10 | gmx rms -n NTD.ndx -s md.tpr -f md_nojump_fit.xtc -o ../Analysis_A/RMSD/Q493K_NTD_rmsd.xvg -tu ns
+echo 10 10 | gmx rms -n RBD.ndx -s md.tpr -f md_nojump_fit.xtc -o ../Analysis_A/RMSD/Q493K_RBD_rmsd.xvg -tu ns
+echo 10 10 | gmx rms -n ACES.ndx -s md.tpr -f md_nojump_fit.xtc -o ../Analysis_A/RMSD/Q493K_ACE2_rmsd.xvg -tu ns
+
